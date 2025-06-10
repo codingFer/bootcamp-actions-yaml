@@ -14,21 +14,12 @@ jobs:
       salida: ${{ steps.step_1.outputs.my_variable }}
 
     steps:
-      - name: Working dir
-        id: step_1
-        run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT
-      
-      - name: Obtener mensaje
-        run: echo ${{ steps.step_1.outputs.my_variable }}
+      - name: Generar archivo
+        run: |
+          echo "Archivo prueba, hola" >> test.log
 
-  second_job:
-    if: ${{ github.ref == 'refs/heads/master' }}
-    needs: first_job
-    runs-on: ubuntu-latest
-
-    env:
-      SALIDA: ${{ needs.first_job.outputs.salida }}
-
-    steps:
-      - name: Hello world
-        run: echo "Hello world segundo ${{ github.ref }} and $SALIDA"
+      - name:
+        uses: actions/upload-artifact@v4
+        with:
+          name: archivo-test
+          path: test-log
