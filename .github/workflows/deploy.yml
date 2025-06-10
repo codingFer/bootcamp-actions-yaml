@@ -4,14 +4,21 @@ on: push
 
 jobs:
   first_job:
+    name: Tutorial codigoFacilito action
     runs-on: ubuntu-latest
 
     env:
       NAME: codigoFacilito
 
     steps:
-      - name: Hello world
-        run: echo "Hello world $NAME"
+      - name: Working dir
+        run: ls -al
+
+      - name: Action
+        uses: actions/checkout@v4
+
+      - name: Working dir
+        run: ls -al
 
   second_job:
     if: ${{ github.ref == 'refs/heads/master' }}
