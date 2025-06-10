@@ -11,7 +11,7 @@ jobs:
         run: echo "Hello world"
 
   second_job:
-    if: ${{ github.ref == 'ref/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/master' }}
     needs: first_job
     runs-on: ubuntu-latest
 
